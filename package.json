@@ -1,0 +1,9 @@
+{
+  "name": "cabo-game",
+  "version": "1.0.0",
+  "description": "Cabo-Browser Game",
+  "type": "module",
+  "scripts": {
+    "start": "npx serve public"
+  }
+}
