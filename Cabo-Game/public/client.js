@@ -1,8 +1,8 @@
 import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm';
 
 // Platzhalter – später fügen wir hier deine Supabase-Schlüssel ein:
-const SUPABASE_URL = 'https://dein-projekt.supabase.co';
-const SUPABASE_ANON_KEY = 'DEIN_PUBLIC_ANON_KEY';
+const SUPABASE_URL = 'https://txwfpacmjroqkiijigib.supabase.co';
+const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InR4d2ZwYWNtanJvcWtpaWppZ2liIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjE5OTc5ODgsImV4cCI6MjA3NzU3Mzk4OH0.bamHN516DIpEf0D1aV7Kd4bOOZdpv4iA5rh174zA6bg';
 
 const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
