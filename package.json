@@ -1,18 +1,6 @@
 {
   "name": "cabo-game",
   "version": "1.0.0",
-  "description": "Cabo-Browser Game",
-  "type": "module",
-  "scripts": {
-    "dev": "vite",
-    "build": "vite build",
-    "preview": "vite preview",
-    "start": "vite"
-  },
-  "dependencies": {
-    "firebase": "^10.13.0"
-  },
-  "devDependencies": {
-    "vite": "^8.2.1"
-  }
+  "description": "CABO Multiplayer Card Game",
+  "type": "module"
 }
