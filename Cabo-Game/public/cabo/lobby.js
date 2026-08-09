@@ -25,13 +25,12 @@ function createRoom(name) {
         players: [
             {
                 name: name,
-                cards = [],
-                preview,
-
+                cards: [],
+                preview: null,
             }
         ]
-    }
-    window.location.href = game.html?room=$:{code};
+    };
+    window.location.href = `game.html?room=${code}`;
 }
 // TODO: Write your Create Room & Join Room JavaScript logic here!
 // 1. Listen for clicks on createRoomBtn -> generate room code with generateRoomCode()

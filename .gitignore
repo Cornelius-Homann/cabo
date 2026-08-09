@@ -5,8 +5,9 @@
 .env.test.local
 .env.production.local
 
-# Dependencies
+# Dependencies & Build Output
 node_modules/
+dist/
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
