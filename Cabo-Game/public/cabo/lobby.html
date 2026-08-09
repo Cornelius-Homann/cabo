@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CABO — Lobby</title>
+  <link rel="stylesheet" href="cabostyle.css">
+</head>
+<body>
+  <main class="lobby-container">
+    <h1 class="logo">CABO</h1>
+    <p class="subtitle">Multiplayer Card Game Lobby</p>
+
+    <!-- STEP 1: PLAYER NAME -->
+    <section class="section-card name-card">
+      <div class="card-header">
+        <span class="step-badge">STEP 1</span>
+        <span class="step-title">Enter Your Player Name</span>
+      </div>
+      <div class="form-group">
+        <input type="text" id="playerNameInput" class="form-input name-input" placeholder="Type your name here..." maxlength="15" required>
+      </div>
+    </section>
+
+    <!-- STEP 2: ROOM SELECTION -->
+    <section class="section-card room-card">
+      <div class="card-header">
+        <span class="step-badge step-2">STEP 2</span>
+        <span class="step-title">Choose Game Action</span>
+      </div>
+
+      <!-- Option A: Create Room -->
+      <div class="form-group">
+        <button id="createRoomBtn" class="btn btn-primary">CREATE NEW ROOM</button>
+      </div>
+
+      <div class="divider">
+        <span>OR JOIN EXISTING ROOM</span>
+      </div>
+
+      <!-- Option B: Join Room -->
+      <div class="form-group">
+        <label for="roomCodeInput">4-Letter Room Code</label>
+        <input type="text" id="roomCodeInput" class="form-input room-code-input" placeholder="e.g. CABO" maxlength="4">
+      </div>
+
+      <div class="form-group">
+        <button id="joinRoomBtn" class="btn btn-secondary">JOIN ROOM</button>
+      </div>
+    </section>
+  </main>
+
+  <script type="module" src="lobby.js"></script>
+</body>
+</html>

@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CABO Game</title>
+  <link rel="stylesheet" href="cabostyle.css">
+</head>
+<body>
+  <main class="game-board">
+    
+    <!-- Player 2 (North / Top) -->
+    <section class="player-slot player-north" id="player-north">
+      <div class="player-header">
+        <span class="player-name">Player 2 (North)</span>
+        <span class="player-badge">Turn</span>
+      </div>
+      <div class="cards-layout">
+        <div class="card-slot penalty" data-penalty="0">+</div>
+        <div class="grid-2x2">
+          <div class="card-slot has-card" data-slot="0">🂠</div>
+          <div class="card-slot has-card" data-slot="1">🂠</div>
+          <div class="card-slot has-card" data-slot="2">🂠</div>
+          <div class="card-slot has-card" data-slot="3">🂠</div>
+        </div>
+        <div class="card-slot penalty" data-penalty="1">+</div>
+      </div>
+    </section>
+
+    <!-- Player 3 (West / Left) -->
+    <section class="player-slot player-west" id="player-west">
+      <div class="player-header">
+        <span class="player-name">Player 3 (West)</span>
+      </div>
+      <div class="cards-layout">
+        <div class="card-slot penalty" data-penalty="0">+</div>
+        <div class="grid-2x2">
+          <div class="card-slot has-card" data-slot="0">🂠</div>
+          <div class="card-slot has-card" data-slot="1">🂠</div>
+          <div class="card-slot has-card" data-slot="2">🂠</div>
+          <div class="card-slot has-card" data-slot="3">🂠</div>
+        </div>
+        <div class="card-slot penalty" data-penalty="1">+</div>
+      </div>
+    </section>
+
+    <!-- Center Table (Stack, Drawn Preview, Discard, CABO!) -->
+    <section class="center-table">
+      <div class="piles-container">
+        <!-- Draw Stack -->
+        <div class="card-slot stack-card" id="drawPile">🂠</div>
+
+        <!-- Drawn Card Preview Slot -->
+        <div class="card-slot drawn-card-slot" id="drawnCardSlot"></div>
+
+        <!-- Discard Pile -->
+        <div class="card-slot discard-card" id="discardPile"></div>
+      </div>
+
+      <!-- CABO Button -->
+      <button class="cabo-button" id="caboBtn">CABO!</button>
+    </section>
+
+    <!-- Player 4 (East / Right) -->
+    <section class="player-slot player-east" id="player-east">
+      <div class="player-header">
+        <span class="player-name">Player 4 (East)</span>
+      </div>
+      <div class="cards-layout">
+        <div class="card-slot penalty" data-penalty="0">+</div>
+        <div class="grid-2x2">
+          <div class="card-slot has-card" data-slot="0">🂠</div>
+          <div class="card-slot has-card" data-slot="1">🂠</div>
+          <div class="card-slot has-card" data-slot="2">🂠</div>
+          <div class="card-slot has-card" data-slot="3">🂠</div>
+        </div>
+        <div class="card-slot penalty" data-penalty="1">+</div>
+      </div>
+    </section>
+
+    <!-- Player 1 (South / You / Bottom) -->
+    <section class="player-slot player-south active-turn" id="player-south">
+      <div class="player-header">
+        <span class="player-name">Player 1 (You)</span>
+        <span class="player-badge">Your Turn</span>
+      </div>
+      <div class="cards-layout">
+        <div class="card-slot penalty" data-penalty="0">+</div>
+        <div class="grid-2x2">
+          <div class="card-slot has-card" data-slot="0">🂠</div>
+          <div class="card-slot has-card" data-slot="1">🂠</div>
+          <div class="card-slot has-card" data-slot="2">🂠</div>
+          <div class="card-slot has-card" data-slot="3">🂠</div>
+        </div>
+        <div class="card-slot penalty" data-penalty="1">+</div>
+      </div>
+    </section>
+
+  </main>
+
+  <script type="module" src="client.js"></script>
+</body>
+</html>
