@@ -1,3 +1,6 @@
 {
-  "outputDirectory": "Cabo-Game/public"
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "buildCommand": "echo 'Static site build complete'",
+  "outputDirectory": "Cabo-Game/public",
+  "cleanUrls": true
 }

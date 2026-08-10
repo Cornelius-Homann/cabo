@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "CABO Multiplayer Card Game",
   "type": "module",
+  "scripts": {
+    "build": "echo 'Static site build complete'"
+  },
   "dependencies": {
     "firebase": "^12.17.1"
   }
