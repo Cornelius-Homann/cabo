@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CABO — Firebase RTDB Playground & Training Ground</title>
+  <link rel="stylesheet" href="cabostyle.css">
+  <style>
+    body {
+      background: #0f172a;
+      color: #f8fafc;
+      font-family: 'Segoe UI', system-ui, sans-serif;
+      margin: 0;
+      padding: 20px;
+    }
+    .container {
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+    header {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+    h1 {
+      color: #38bdf8;
+      margin-bottom: 0.5rem;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+    @media (max-width: 768px) {
+      .grid { grid-template-columns: 1fr; }
+    }
+    .card {
+      background: #1e293b;
+      border: 1fr solid #334155;
+      border-radius: 12px;
+      padding: 20px;
+      box-shadow: 0 4px 6px -1px rgba(0,0,0,0.3);
+    }
+    .card h2 {
+      font-size: 1.25rem;
+      color: #38bdf8;
+      margin-top: 0;
+      border-bottom: 1px solid #334155;
+      padding-bottom: 8px;
+    }
+    pre {
+      background: #090d16;
+      padding: 15px;
+      border-radius: 8px;
+      overflow-x: auto;
+      color: #4ade80;
+      font-family: 'Fira Code', 'Consolas', monospace;
+      font-size: 0.9rem;
+      max-height: 350px;
+    }
+    .btn-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 15px;
+    }
+    button {
+      background: #0284c7;
+      color: white;
+      border: none;
+      padding: 10px 16px;
+      border-radius: 6px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    button:hover {
+      background: #0369a1;
+    }
+    button.btn-danger {
+      background: #ef4444;
+    }
+    button.btn-danger:hover {
+      background: #dc2626;
+    }
+    button.btn-success {
+      background: #22c55e;
+    }
+    button.btn-success:hover {
+      background: #16a34a;
+    }
+    .task-item {
+      background: #0f172a;
+      border-left: 4px solid #38bdf8;
+      padding: 12px;
+      margin-bottom: 12px;
+      border-radius: 0 6px 6px 0;
+    }
+    .task-item h3 {
+      margin: 0 0 6px 0;
+      font-size: 1rem;
+      color: #f1f5f9;
+    }
+    .task-item code {
+      background: #1e293b;
+      color: #fbbf24;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-size: 0.85rem;
+    }
+    .nav-link {
+      display: inline-block;
+      margin-top: 15px;
+      color: #38bdf8;
+      text-decoration: none;
+    }
+    .nav-link:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>🔥 Firebase Realtime Database Playground</h1>
+      <p>Interactive testing ground for learning RTDB CRUD & state synchronization</p>
+      <a href="lobby.html" class="nav-link">← Back to Lobby</a>
+    </header>
+
+    <div class="grid">
+      <!-- Left Column: Controls & Cheat Sheet -->
+      <div class="card">
+        <h2>🛠️ Controls & Test Triggers</h2>
+        
+        <p>Click these buttons to test live database updates:</p>
+        <div class="btn-group">
+          <button id="btnCreateRoom" class="btn-success">1. Create Room (set)</button>
+          <button id="btnUpdateTurn">2. Change Turn (update)</button>
+          <button id="btnAddPlayer">3. Add Player (update)</button>
+          <button id="btnPushMsg">4. Push Message (push)</button>
+          <button id="btnTxScore" class="btn-success">5. Incr Score (runTransaction)</button>
+          <button id="btnDeleteRoom" class="btn-danger">6. Delete Room (remove)</button>
+          <button id="btnClearAll" class="btn-danger">7. Clear Sandbox (set null)</button>
+        </div>
+
+        <h2>📖 Quick Reference Sheet</h2>
+        <div class="task-item">
+          <h3>Create / Overwrite: <code>set(ref, data)</code></h3>
+          <p>Overwrites everything at the target path.</p>
+        </div>
+        <div class="task-item">
+          <h3>Update Fields: <code>update(ref, { key: value })</code></h3>
+          <p>Updates specified fields without deleting existing siblings.</p>
+        </div>
+        <div class="task-item">
+          <h3>Append List Item: <code>push(ref, data)</code></h3>
+          <p>Generates a unique timestamped key like <code>-O9Xk...</code>.</p>
+        </div>
+        <div class="task-item">
+          <h3>Delete: <code>remove(ref)</code> or <code>set(ref, null)</code></h3>
+          <p>Deletes the node at that location.</p>
+        </div>
+        <div class="task-item">
+          <h3>Atomic Tx: <code>runTransaction(ref, (val) => val + 1)</code></h3>
+          <p>Prevents race conditions when multiple players update simultaneously.</p>
+        </div>
+      </div>
+
+      <!-- Right Column: Live Data Inspector & Tasks -->
+      <div>
+        <div class="card" style="margin-bottom: 20px;">
+          <h2>📡 Live Database Inspector (<code>sandbox_demo</code>)</h2>
+          <p style="font-size: 0.85rem; color: #94a3b8;">Syncing in real-time via <code>onValue()</code>:</p>
+          <pre id="liveJsonView">Loading live data from Firebase Realtime Database...</pre>
+        </div>
+
+        <div class="card">
+          <h2>🎯 Coding Tasks for You</h2>
+          <div class="task-item">
+            <h3>Task 1: Add a card to Player 1's hand</h3>
+            <p>Open <code>Cabo-Game/public/cabo/playground.js</code> and complete <code>addCardToPlayer()</code> using <code>update()</code> or <code>set()</code>.</p>
+          </div>
+          <div class="task-item">
+            <h3>Task 2: Call CABO!</h3>
+            <p>Complete <code>callCabo()</code> to set <code>cabopressed: true</code> and record the caller's name in RTDB.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script type="module" src="playground.js"></script>
+</body>
+</html>
