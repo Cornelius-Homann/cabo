@@ -1,0 +1,15 @@
+{
+  "compilerOptions": {
+    "checkJs": false,
+    "noImplicitAny": false,
+    "strictNullChecks": false,
+    "strictFunctionTypes": false,
+    "target": "ES2022",
+    "module": "ESNext",
+    "moduleResolution": "node"
+  },
+  "exclude": [
+    "node_modules",
+    "dist"
+  ]
+}

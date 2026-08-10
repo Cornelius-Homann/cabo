@@ -140,6 +140,7 @@
           <button id="btnTxScore" class="btn-success">5. Incr Score (runTransaction)</button>
           <button id="btnDeleteRoom" class="btn-danger">6. Delete Room (remove)</button>
           <button id="btnClearAll" class="btn-danger">7. Clear Sandbox (set null)</button>
+          <button id="btnTest" class="btn-success">8. Test</button>
         </div>
 
         <h2>📖 Quick Reference Sheet</h2>
@@ -177,11 +178,28 @@
           <h2>🎯 Coding Tasks for You</h2>
           <div class="task-item">
             <h3>Task 1: Add a card to Player 1's hand</h3>
-            <p>Open <code>Cabo-Game/public/cabo/playground.js</code> and complete <code>addCardToPlayer()</code> using <code>update()</code> or <code>set()</code>.</p>
+            <p>Open <code>Cabo-Game/public/cabo/playground.js</code> and complete <code>addCardToPlayer()</code>.</p>
+            <button id="btnRunTask1" style="padding: 4px 10px; font-size: 0.8rem; margin-top: 6px;">Run Task 1</button>
           </div>
           <div class="task-item">
-            <h3>Task 2: Call CABO!</h3>
-            <p>Complete <code>callCabo()</code> to set <code>cabopressed: true</code> and record the caller's name in RTDB.</p>
+            <h3>Task 2: Call CABO! (Write)</h3>
+            <p>Complete <code>callCabo()</code> to set <code>caboCalled: true</code> and <code>caboCaller: "Alice"</code>.</p>
+            <button id="btnRunTask2" style="padding: 4px 10px; font-size: 0.8rem; margin-top: 6px;">Run Task 2</button>
+          </div>
+          <div class="task-item">
+            <h3>Task 3: Read Single Value (get)</h3>
+            <p>Complete <code>readAliceScore()</code> to fetch and log Alice's score using <code>get()</code> and <code>.val()</code>.</p>
+            <button id="btnRunTask3" style="padding: 4px 10px; font-size: 0.8rem; margin-top: 6px;">Run Task 3</button>
+          </div>
+          <div class="task-item">
+            <h3>Task 4: Read & Loop Object (get)</h3>
+            <p>Complete <code>calculateTotalScore()</code> to read all players and sum their scores.</p>
+            <button id="btnRunTask4" style="padding: 4px 10px; font-size: 0.8rem; margin-top: 6px;">Run Task 4</button>
+          </div>
+          <div class="task-item">
+            <h3>Task 5: Live Listener (onValue)</h3>
+            <p>Complete <code>watchCurrentTurn()</code> to log turn changes in real time.</p>
+            <button id="btnRunTask5" style="padding: 4px 10px; font-size: 0.8rem; margin-top: 6px;">Start Task 5 Watcher</button>
           </div>
         </div>
       </div>

@@ -243,9 +243,10 @@ body {
 .cards-layout {
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
   gap: 8px;
   transition: transform 0.3s ease;
+  max-width: 100%;
 }
 
 .player-south .cards-layout { transform: rotate(0deg); }
@@ -258,6 +259,17 @@ body {
   grid-template-columns: repeat(2, var(--card-width));
   grid-template-rows: repeat(2, var(--card-height));
   gap: 6px;
+  flex-shrink: 0;
+}
+
+.extra-cards {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-content: flex-start;
+  max-height: calc(2 * var(--card-height) + 6px);
+  gap: 6px;
+  flex-shrink: 0;
 }
 
 .card-slot {

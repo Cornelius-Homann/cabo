@@ -12,8 +12,9 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
-# Vercel
+# IDE & Vercel
 .vercel
+.vscode/
 
 # Operating System Files
 .DS_Store

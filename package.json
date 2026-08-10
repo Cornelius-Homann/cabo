@@ -2,5 +2,8 @@
   "name": "cabo-game",
   "version": "1.0.0",
   "description": "CABO Multiplayer Card Game",
-  "type": "module"
+  "type": "module",
+  "dependencies": {
+    "firebase": "^12.17.1"
+  }
 }

@@ -40,7 +40,9 @@ cabo/
 3. **`cabo/game.html` (CABO Game Table)**:
    - Responsive 4-player cardinal card game board.
 
-## Developer Preferences & Learning Goals
-- User is learning Firebase integration & game state synchronization.
-- AI handles responsive CSS, HTML layouts, and DOM manipulation boilerplate.
-- User focuses on Firebase RTDB functions (`ref`, `onValue`, `set`, `update`, `runTransaction`) and CABO game rules.
+## Card Layout Architecture
+- **Standard Cards**: The first 4 cards (indices 0..3) are rendered inside `.grid-2x2` (a 2-by-2 grid).
+- **Extra Cards**: Any additional cards beyond index 3 are dynamically appended to `.extra-cards` located to the right of `.grid-2x2`.
+- **Flex Layout**: `.extra-cards` uses vertical flex-wrap with a max-height matching `.grid-2x2`, creating clean 2-row columns that expand horizontally to the right for any number of extra cards.
+- **Rendering Logic**: `renderPlayerCards(playerSlot, cardsArray, isFaceUp)` in [`client.js`](file:///C:/Users/neush/Documents/cabo/cabo/Cabo-Game/public/cabo/client.js) handles UI card synchronization.
+

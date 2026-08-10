@@ -63,6 +63,70 @@ export function setCardValue(slotElement, value, isFaceUp = true) {
   }
 }
 
+/**
+ * 3. RENDER ALL CARDS FOR A PLAYER
+ * - Standard 4 cards (indices 0..3) render into .grid-2x2
+ * - Any extra cards (indices 4+) render into .extra-cards to the right
+ * 
+ * @param {string|HTMLElement} playerSlotElementOrId - e.g. 'player-south' or DOM element
+ * @param {Array<number|string>} cardsArray - Array of card values, e.g. [5, 2, 8, 1, 9, 3]
+ * @param {boolean|Array<boolean>} isFaceUp - Face-up status
+ */
+export function renderPlayerCards(playerSlotElementOrId, cardsArray = [], isFaceUp = false) {
+  const container = typeof playerSlotElementOrId === 'string'
+    ? document.getElementById(playerSlotElementOrId)
+    : playerSlotElementOrId;
+
+  if (!container) return;
+
+  const grid2x2 = container.querySelector('.grid-2x2');
+  let extraCardsContainer = container.querySelector('.extra-cards');
+
+  if (!extraCardsContainer) {
+    const cardsLayout = container.querySelector('.cards-layout');
+    if (cardsLayout) {
+      extraCardsContainer = document.createElement('div');
+      extraCardsContainer.className = 'extra-cards';
+      cardsLayout.appendChild(extraCardsContainer);
+    }
+  }
+
+  // A. Standard 4 Cards (Indices 0..3) inside .grid-2x2
+  if (grid2x2) {
+    const standardSlots = grid2x2.querySelectorAll('.card-slot');
+    for (let i = 0; i < 4; i++) {
+      const slot = standardSlots[i];
+      if (!slot) continue;
+
+      if (i < cardsArray.length) {
+        const faceUp = Array.isArray(isFaceUp) ? !!isFaceUp[i] : !!isFaceUp;
+        setCardValue(slot, cardsArray[i], faceUp);
+      } else {
+        setCardValue(slot, null);
+      }
+    }
+  }
+
+  // B. Extra Cards (Indices 4+) inside .extra-cards (to the right)
+  if (extraCardsContainer) {
+    extraCardsContainer.innerHTML = ''; // Reset extra cards container
+    for (let i = 4; i < cardsArray.length; i++) {
+      const extraSlot = document.createElement('div');
+      extraSlot.className = 'card-slot has-card';
+      extraSlot.dataset.slot = i;
+
+      const faceUp = Array.isArray(isFaceUp) ? !!isFaceUp[i] : !!isFaceUp;
+      setCardValue(extraSlot, cardsArray[i], faceUp);
+
+      extraCardsContainer.appendChild(extraSlot);
+    }
+  }
+}
+
+// Expose renderPlayerCards globally for DevTools / window calls
+// @ts-ignore
+window.renderPlayerCards = renderPlayerCards;
+
 // Attach live listener to 'room_demo'
 const gameStateRef = ref(rtdb, 'game_rooms/room_demo');
 
@@ -70,5 +134,14 @@ onValue(gameStateRef, (snapshot) => {
   const gameState = snapshot.val();
   if (gameState) {
     console.log("Live Game State Updated from RTDB:", gameState);
+
+    if (gameState.players) {
+      Object.keys(gameState.players).forEach((position) => {
+        const player = gameState.players[position];
+        if (player && Array.isArray(player.cards)) {
+          renderPlayerCards(`player-${position}`, player.cards, player.isFaceUp || false);
+        }
+      });
+    }
   }
 });
